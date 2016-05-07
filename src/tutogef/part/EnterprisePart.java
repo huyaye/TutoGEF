@@ -1,4 +1,4 @@
-package tutogef.editpart;
+package tutogef.part;
 
 import java.util.ArrayList;
 import java.util.List;
