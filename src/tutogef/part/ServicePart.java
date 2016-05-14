@@ -3,8 +3,10 @@ package tutogef.part;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
+import tutogef.editpolicies.AppEditLayoutPolicy;
 import tutogef.figure.ServiceFigure;
 import tutogef.model.Node;
 import tutogef.model.Service;
@@ -19,7 +21,7 @@ public class ServicePart extends AbstractGraphicalEditPart {
 
 	@Override
 	protected void createEditPolicies() {
-		// TODO Auto-generated method stub
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
 	}
 	
 	@Override
