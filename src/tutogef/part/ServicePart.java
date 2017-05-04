@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 
+import tutogef.editpolicies.AppDeletePolicy;
 import tutogef.editpolicies.AppEditLayoutPolicy;
 import tutogef.figure.ServiceFigure;
 import tutogef.model.Node;
@@ -21,6 +22,7 @@ public class ServicePart extends AppAbstractEditPart {
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
 	}
 	
 	@Override

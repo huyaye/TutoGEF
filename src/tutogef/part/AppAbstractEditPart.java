@@ -24,6 +24,9 @@ public abstract class AppAbstractEditPart extends AbstractGraphicalEditPart impl
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
 			refreshVisuals();
+		} else if (evt.getPropertyName().equals(Node.PROPERTY_ADD) ||
+				evt.getPropertyName().equals(Node.PROPERTY_REMOVE)) {
+			refreshChildren();
 		}
 	}
 }

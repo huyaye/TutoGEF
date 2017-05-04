@@ -9,6 +9,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class Node {
 	public static final String PROPERTY_LAYOUT = "NodeLayout";
+	public static final String PROPERTY_ADD = "NodeAddChild";
+	public static final String PROPERTY_REMOVE = "NodeRemoveChild";
 
 	private String name;
 	private Rectangle layout;
@@ -43,14 +45,18 @@ public class Node {
 	}
 	
 	public void addChild(Node child) {
-		child.setParent(this);
-		children.add(child);
+		if (children.add(child)) {
+			child.setParent(this);
+			getListeners().firePropertyChange(PROPERTY_ADD, null, child);
+		}
 	}
 	
 	public void removeChild(Node child) {
-		children.remove(child);
+		if (children.remove(child)) {
+			getListeners().firePropertyChange(PROPERTY_REMOVE, child, null);
+		}
 	}
-	
+
 	public List<Node> getChildrenArray() {
 		return children;
 	}

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
 
+import tutogef.editpolicies.AppDeletePolicy;
 import tutogef.figure.EmployeFigure;
 import tutogef.model.Employe;
 import tutogef.model.Node;
@@ -19,7 +21,7 @@ public class EmployePart extends AppAbstractEditPart {
 
 	@Override
 	protected void createEditPolicies() {
-		// TODO Auto-generated method stub
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
 	}
 
 	@Override
