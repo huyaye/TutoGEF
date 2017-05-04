@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0
 Bundle-Activator: tutogef.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.gef;bundle-version="3.11.0"
+ org.eclipse.gef;bundle-version="3.11.0",
+ org.eclipse.ui.views;bundle-version="3.8.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy

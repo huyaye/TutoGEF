@@ -24,6 +24,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		try {
 			page.openEditor(new MyEditorInput("TutoGEF"), MyGraphicalEditor.ID, true);
+			page.resetPerspective();
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
