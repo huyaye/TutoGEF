@@ -22,5 +22,6 @@ public class ApplicationWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
         configurer.setShowCoolBar(false);
         configurer.setShowStatusLine(false);
         configurer.setTitle("TutoGEF"); //$NON-NLS-1$
+        configurer.setShowCoolBar(true);
     }
 }
