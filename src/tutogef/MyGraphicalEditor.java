@@ -8,6 +8,7 @@ import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.parts.ScrollableThumbnail;
+import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
@@ -96,6 +97,12 @@ public class MyGraphicalEditor extends GraphicalEditor {
 		
 		viewer.setProperty(MouseWheelHandler.KeyGenerator.getKey(SWT.NONE), MouseWheelZoomHandler.SINGLETON);
 		viewer.setKeyHandler(keyHandler);
+		
+		/*
+		 * Context menu
+		 */
+		ContextMenuProvider provider = new AppContextMenuProvider(viewer, getActionRegistry());
+		viewer.setContextMenu(provider);
 	}
 
 	@Override
@@ -221,6 +228,9 @@ public class MyGraphicalEditor extends GraphicalEditor {
 			bars.updateActionBars();
 
 			getViewer().setKeyHandler(keyHandler);
+			
+			ContextMenuProvider provider = new AppContextMenuProvider(getViewer(), getActionRegistry());
+			getViewer().setContextMenu(provider);
 		}
 
 		@Override
