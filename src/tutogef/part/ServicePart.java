@@ -4,14 +4,13 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import tutogef.editpolicies.AppEditLayoutPolicy;
 import tutogef.figure.ServiceFigure;
 import tutogef.model.Node;
 import tutogef.model.Service;
 
-public class ServicePart extends AbstractGraphicalEditPart {
+public class ServicePart extends AppAbstractEditPart {
 
 	@Override
 	protected IFigure createFigure() {

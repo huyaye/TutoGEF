@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import tutogef.figure.EmployeFigure;
 import tutogef.model.Employe;
 import tutogef.model.Node;
 
-public class EmployePart extends AbstractGraphicalEditPart {
+public class EmployePart extends AppAbstractEditPart {
 
 	@Override
 	protected IFigure createFigure() {

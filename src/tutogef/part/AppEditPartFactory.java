@@ -2,7 +2,6 @@ package tutogef.part;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
 import tutogef.model.Employe;
 import tutogef.model.Enterprise;
@@ -12,7 +11,7 @@ public class AppEditPartFactory implements EditPartFactory {
 
 	@Override
 	public EditPart createEditPart(EditPart context, Object model) {
-		AbstractGraphicalEditPart part = null;
+		AppAbstractEditPart part = null;
 
 		if (model instanceof Enterprise) {
 			part = new EnterprisePart();
