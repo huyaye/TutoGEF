@@ -7,6 +7,7 @@ import org.eclipse.gef.EditPolicy;
 
 import tutogef.editpolicies.AppDeletePolicy;
 import tutogef.editpolicies.AppEditLayoutPolicy;
+import tutogef.editpolicies.AppRenamePolicy;
 import tutogef.figure.ServiceFigure;
 import tutogef.model.Node;
 import tutogef.model.Service;
@@ -23,6 +24,7 @@ public class ServicePart extends AppAbstractEditPart {
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
+		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
 	}
 	
 	@Override

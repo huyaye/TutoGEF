@@ -11,6 +11,7 @@ public class Node {
 	public static final String PROPERTY_LAYOUT = "NodeLayout";
 	public static final String PROPERTY_ADD = "NodeAddChild";
 	public static final String PROPERTY_REMOVE = "NodeRemoveChild";
+	public static final String PROPERTY_RENAME = "NodeRename";
 
 	private String name;
 	private Rectangle layout;
@@ -27,9 +28,12 @@ public class Node {
 	}
 	
 	public void setName(String name) {
+		String oldName = this.name;
 		this.name = name;
+		getListeners().firePropertyChange(PROPERTY_RENAME, oldName, this.name);
+		
 	}
-	
+
 	public String getName()  {
 		return name;
 	}

@@ -27,6 +27,8 @@ public abstract class AppAbstractEditPart extends AbstractGraphicalEditPart impl
 		} else if (evt.getPropertyName().equals(Node.PROPERTY_ADD) ||
 				evt.getPropertyName().equals(Node.PROPERTY_REMOVE)) {
 			refreshChildren();
+		} else if (evt.getPropertyName().equals(Node.PROPERTY_RENAME)) {
+			refreshVisuals();
 		}
 	}
 }

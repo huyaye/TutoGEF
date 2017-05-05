@@ -25,6 +25,8 @@ public abstract class AppAbstractTreeEditPart extends AbstractTreeEditPart imple
 		if (evt.getPropertyName().equals(Node.PROPERTY_ADD) ||
 				evt.getPropertyName().equals(Node.PROPERTY_REMOVE)) {
 			refreshChildren();
+		} else if (evt.getPropertyName().equals(Node.PROPERTY_RENAME)) {
+			refreshVisuals();
 		}
 	}
 }

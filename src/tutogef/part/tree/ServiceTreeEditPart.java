@@ -7,6 +7,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 import tutogef.editpolicies.AppDeletePolicy;
+import tutogef.editpolicies.AppRenamePolicy;
 import tutogef.model.Node;
 import tutogef.model.Service;
 
@@ -19,6 +20,7 @@ public class ServiceTreeEditPart extends AppAbstractTreeEditPart {
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
+		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
 	}
 	
 	@Override
