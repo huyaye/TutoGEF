@@ -18,11 +18,17 @@ import org.eclipse.gef.MouseWheelHandler;
 import org.eclipse.gef.MouseWheelZoomHandler;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.gef.palette.CreationToolEntry;
+import org.eclipse.gef.palette.MarqueeToolEntry;
+import org.eclipse.gef.palette.PaletteGroup;
+import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PaletteSeparator;
+import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.ContentOutlinePage;
-import org.eclipse.gef.ui.parts.GraphicalEditor;
+import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
@@ -35,16 +41,18 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.IPageSite;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import tutogef.actions.RenameAction;
 import tutogef.model.Employe;
 import tutogef.model.Enterprise;
+import tutogef.model.NodeCreationFactory;
 import tutogef.model.Service;
 import tutogef.part.AppEditPartFactory;
 import tutogef.part.tree.AppTreeEditPartFactory;
 
-public class MyGraphicalEditor extends GraphicalEditor {
+public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	public static final String ID = "tutogef.mygraphicaleditor";
 	
 	private Enterprise model;
@@ -126,6 +134,32 @@ public class MyGraphicalEditor extends GraphicalEditor {
 		IAction action = new RenameAction(this);
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
+	}
+
+	@Override
+	protected PaletteRoot getPaletteRoot() {
+		PaletteRoot root = new PaletteRoot();
+		
+		PaletteGroup mainGroup = new PaletteGroup("Manipulation objects");
+		root.add(mainGroup);
+		
+		SelectionToolEntry selectionToolEntry = new SelectionToolEntry();
+		mainGroup.add(selectionToolEntry);
+		mainGroup.add(new MarqueeToolEntry());
+		
+		PaletteSeparator sep2 = new PaletteSeparator();
+		root.add(sep2);
+		
+		PaletteGroup instGroup = new PaletteGroup("Creation elements");
+		root.add(instGroup);
+		
+		instGroup.add(new CreationToolEntry("Service", "Creation a service type", 
+				new NodeCreationFactory(Service.class), 
+				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-low.png"),
+				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-high.png")));
+
+		root.setDefaultEntry(selectionToolEntry);
+		return root;
 	}
 
 	private Enterprise createEnterprise() {

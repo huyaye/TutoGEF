@@ -90,6 +90,10 @@ public class Node implements IAdaptable {
 		listeners.removePropertyChangeListener(listener);
 	}
 
+	public boolean contains(Node child) {
+		return children.contains(child);
+	}
+
 	@Override
 	public Object getAdapter(Class adapter) {
 		if (adapter == IPropertySource.class) {

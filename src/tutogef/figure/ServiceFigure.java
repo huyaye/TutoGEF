@@ -9,6 +9,9 @@ import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 public class ServiceFigure extends Figure {
+	public static final int SERVICE_FIGURE_DEFWIDTH = 250;
+	public static final int SERVICE_FIGURE_DEFHEIGHT = 150;
+
 	private Label labelName = new Label();
 	private Label labelEtage = new Label();
 	
