@@ -18,6 +18,11 @@ public class NodeCreationFactory implements CreationFactory {
 			srv.setEtage(42);
 			srv.setName("Hello~");
 			return srv;
+		} else if (template == Employe.class) {
+			Employe emp = new Employe();
+			emp.setPrenom("Jungwook");
+			emp.setName("Ryu");
+			return emp;
 		}
 		return null;
 	}

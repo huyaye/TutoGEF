@@ -157,6 +157,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				new NodeCreationFactory(Service.class), 
 				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-low.png"),
 				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-high.png")));
+		instGroup.add(new CreationToolEntry("Employe", "Creation a employe model", 
+				new NodeCreationFactory(Employe.class), 
+				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/employe-low.png"),
+				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/employe-high.png")));
 
 		root.setDefaultEntry(selectionToolEntry);
 		return root;

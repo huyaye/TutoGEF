@@ -8,6 +8,9 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 public class EmployeFigure extends Figure {
+	public static final int EMPLOYE_FIGURE_DEFWIDTH = 60;
+	public static final int EMPLOYE_FIGURE_DEFHEIGHT = 40;
+
 	private Label labelName = new Label();
 	private Label labelFirstName = new Label();
 
