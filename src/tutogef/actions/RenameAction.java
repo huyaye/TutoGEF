@@ -53,6 +53,9 @@ public class RenameAction extends SelectionAction {
 		reqData.put("newName", name);
 		renameReq.setExtendedData(reqData);
 		
+		if (getSelectedObjects().isEmpty()) {
+			return null;
+		}
 		EditPart object = (EditPart)getSelectedObjects().get(0);
 		Command cmd = object.getCommand(renameReq);
 		return cmd;

@@ -35,6 +35,7 @@ public class ServicePart extends AppAbstractEditPart {
 		figure.setName(model.getName());
 		figure.setEtage(model.getEtage());
 		figure.setLayout(model.getLayout());
+		figure.setBackgroundColor(model.getColor());
 	}
 
 	@Override

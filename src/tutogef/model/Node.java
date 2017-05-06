@@ -5,9 +5,13 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.ui.views.properties.IPropertySource;
 
-public class Node {
+import tutogef.properties.NodePropertySource;
+
+public class Node implements IAdaptable {
 	public static final String PROPERTY_LAYOUT = "NodeLayout";
 	public static final String PROPERTY_ADD = "NodeAddChild";
 	public static final String PROPERTY_REMOVE = "NodeRemoveChild";
@@ -18,7 +22,8 @@ public class Node {
 	private List<Node> children;
 	private Node parent;
 	private PropertyChangeSupport listeners;
-	
+	private IPropertySource propertySource;
+
 	public Node() {
 		this.name = "Unknown";
 		this.layout = new Rectangle(10, 10, 100, 100);
@@ -83,5 +88,16 @@ public class Node {
 	
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		listeners.removePropertyChangeListener(listener);
+	}
+
+	@Override
+	public Object getAdapter(Class adapter) {
+		if (adapter == IPropertySource.class) {
+			if (propertySource == null) {
+				propertySource = new NodePropertySource(this);
+			}
+			return propertySource;
+		}
+		return null;
 	}
 }
