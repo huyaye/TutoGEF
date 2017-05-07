@@ -45,6 +45,8 @@ import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
+import tutogef.actions.CopyNodeAction;
+import tutogef.actions.PasteNodeAction;
 import tutogef.actions.RenameAction;
 import tutogef.model.Employe;
 import tutogef.model.Enterprise;
@@ -134,6 +136,14 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		
 		ActionRegistry registry = getActionRegistry();
 		IAction action = new RenameAction(this);
+		registry.registerAction(action);
+		getSelectionActions().add(action.getId());
+		
+		action = new CopyNodeAction(this);
+		registry.registerAction(action);
+		getSelectionActions().add(action.getId());
+		
+		action = new PasteNodeAction(this);
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
 	}
@@ -284,6 +294,8 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 			bars.setGlobalActionHandler(ActionFactory.UNDO.getId(), getActionRegistry().getAction(ActionFactory.UNDO.getId()));
 			bars.setGlobalActionHandler(ActionFactory.REDO.getId(), getActionRegistry().getAction(ActionFactory.REDO.getId()));
 			bars.setGlobalActionHandler(ActionFactory.DELETE.getId(), getActionRegistry().getAction(ActionFactory.DELETE.getId()));
+			bars.setGlobalActionHandler(ActionFactory.COPY.getId(), getActionRegistry().getAction(ActionFactory.COPY.getId()));
+			bars.setGlobalActionHandler(ActionFactory.PASTE.getId(), getActionRegistry().getAction(ActionFactory.PASTE.getId()));
 			bars.updateActionBars();
 
 			getViewer().setKeyHandler(keyHandler);
