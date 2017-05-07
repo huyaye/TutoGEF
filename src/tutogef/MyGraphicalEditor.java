@@ -16,9 +16,10 @@ import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.MouseWheelHandler;
 import org.eclipse.gef.MouseWheelZoomHandler;
+import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
-import org.eclipse.gef.palette.CreationToolEntry;
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -67,6 +68,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		GraphicalViewer viewer = getGraphicalViewer();
 		model = createEnterprise();
 		viewer.setContents(model);
+		viewer.addDropTargetListener(new MyTemplateTransferDropTargetListener(viewer));
 	}
 
 	@Override
@@ -137,6 +139,12 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	}
 
 	@Override
+	protected void initializePaletteViewer() {
+		super.initializePaletteViewer();
+		getPaletteViewer().addDragSourceListener(new TemplateTransferDragSourceListener(getPaletteViewer()));
+	}
+
+	@Override
 	protected PaletteRoot getPaletteRoot() {
 		PaletteRoot root = new PaletteRoot();
 		
@@ -153,11 +161,11 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		PaletteGroup instGroup = new PaletteGroup("Creation elements");
 		root.add(instGroup);
 		
-		instGroup.add(new CreationToolEntry("Service", "Creation a service type", 
+		instGroup.add(new CombinedTemplateCreationEntry("Service", "Creation a service type", 
 				new NodeCreationFactory(Service.class), 
 				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-low.png"),
 				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/services-high.png")));
-		instGroup.add(new CreationToolEntry("Employe", "Creation a employe model", 
+		instGroup.add(new CombinedTemplateCreationEntry("Employe", "Creation a employe model", 
 				new NodeCreationFactory(Employe.class), 
 				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/employe-low.png"),
 				AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "icons/employe-high.png")));
